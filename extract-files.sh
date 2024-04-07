@@ -15,9 +15,9 @@ VENDOR=xiaomi
 MY_DIR="${BASH_SOURCE%/*}"
 if [[ ! -d "${MY_DIR}" ]]; then MY_DIR="${PWD}"; fi
 
-ANDROID_ROOT="${MY_DIR}/../../.."
+ANDROID_ROOT="${PWD}"
 
-HELPER="${ANDROID_ROOT}/tools/extract-utils/extract_utils.sh"
+HELPER="${ANDROID_ROOT}/extract-utils/extract_utils.sh"
 if [ ! -f "${HELPER}" ]; then
     echo "Unable to find helper script at ${HELPER}"
     exit 1
