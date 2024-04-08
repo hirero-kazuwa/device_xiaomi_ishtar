@@ -6,6 +6,9 @@
 
 DEVICE_PATH := device/xiaomi/ishtar
 
+# Inherit from sm8550-common
+include device/xiaomi/sm8550-common/BoardConfigCommon.mk
+
 # A/B
 AB_OTA_UPDATER := true
 AB_OTA_PARTITIONS += \
