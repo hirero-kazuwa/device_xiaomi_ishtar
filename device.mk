@@ -4,9 +4,6 @@
 # SPDX-License-Identifier: Apache-2.0
 #
 
-# Inherit from sm8550-common
-$(call inherit-product, device/xiaomi/sm8550-common/common.mk)
-
 # Enable updating of APEXes
 $(call inherit-product, $(SRC_TARGET_DIR)/product/updatable_apex.mk)
 
@@ -58,6 +55,9 @@ PRODUCT_ENFORCE_RRO_TARGETS := *
 # Partitions
 PRODUCT_BUILD_SUPER_PARTITION := false
 PRODUCT_USE_DYNAMIC_PARTITIONS := true
+
+# Inherit from sm8550-common
+$(call inherit-product, device/xiaomi/sm8550-common/common.mk)
 
 # Product characteristics
 PRODUCT_CHARACTERISTICS := nosdcard
