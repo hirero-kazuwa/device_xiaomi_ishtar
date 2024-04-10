@@ -27,7 +27,6 @@ AB_OTA_PARTITIONS += \
     boot \
     dtbo \
     recovery
-BOARD_USES_RECOVERY_AS_BOOT := true
 
 # Architecture
 TARGET_ARCH := arm64
