@@ -73,8 +73,40 @@ $(call inherit-product, device/xiaomi/sm8550-common/common.mk)
 # Product characteristics
 PRODUCT_CHARACTERISTICS := nosdcard
 
+# QMI
+PRODUCT_PACKAGES += \
+    libjson
+
+# QTI components
+TARGET_COMMON_QTI_COMPONENTS := \
+     alarm \
+     audio \
+     av \
+     bt \
+     charging \
+     display \
+     gps \
+     init \
+     overlay \
+     telephony \
+     usb \
+     wfd \
+     wlan
+
+TARGET_USE_AIDL_QTI_BT_AUDIO := true
+TARGET_USE_AIDL_QTI_HEALTH := true
+
+# RenderScript
+PRODUCT_PACKAGES += \
+    android.hardware.renderscript@1.0-impl
+
+# Rootdir
+PRODUCT_PACKAGES += \
+    init.mi_udfps.rc \
+    init.target.rc
+
 # Shipping API level
-PRODUCT_SHIPPING_API_LEVEL := 33
+PRODUCT_SHIPPING_API_LEVEL := 33 34
 
 # Soong namespaces
 PRODUCT_SOONG_NAMESPACES += \
