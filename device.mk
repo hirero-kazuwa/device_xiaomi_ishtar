@@ -6,9 +6,6 @@
 
 PRODUCT_OTA_ENFORCE_VINTF_KERNEL_REQUIREMENTS := false
 
-# Include GSI keys
-$(call inherit-product, $(SRC_TARGET_DIR)/product/developer_gsi_keys.mk)
-
 # A/B
 $(call inherit-product, $(SRC_TARGET_DIR)/product/virtual_ab_ota.mk)
 
@@ -42,6 +39,9 @@ PRODUCT_PACKAGES += \
 PRODUCT_AAPT_CONFIG := normal
 PRODUCT_AAPT_PREF_CONFIG := xxhdpi
 
+# Board
+TARGET_BOARD_PLATFORM := kalama
+
 # Dolby
  PRODUCT_PACKAGES += \
      XiaomiDolby
@@ -50,10 +50,6 @@ PRODUCT_AAPT_PREF_CONFIG := xxhdpi
 PRODUCT_PACKAGES += \
     android.hardware.fastboot@1.1-impl-mock \
     fastbootd
-
-# Health
-PRODUCT_PACKAGES += \
-    android.hardware.health@2.1-impl
 
 # Overlays
 PRODUCT_ENFORCE_RRO_TARGETS := *
@@ -77,28 +73,16 @@ $(call inherit-product, device/xiaomi/sm8550-common/common.mk)
 # Product characteristics
 PRODUCT_CHARACTERISTICS := nosdcard
 
-# QMI
+# Perf
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/configs/perf/msm_irqbalance.conf:$(TARGET_COPY_OUT_VENDOR)/etc/msm_irqbalance.conf
+
+# QTI
 PRODUCT_PACKAGES += \
-    libjson
-
-# QTI components
-TARGET_COMMON_QTI_COMPONENTS := \
-     alarm \
-     audio \
-     av \
-     bt \
-     charging \
-     display \
-     gps \
-     init \
-     overlay \
-     telephony \
-     usb \
-     wfd \
-     wlan
-
-TARGET_USE_AIDL_QTI_BT_AUDIO := true
-TARGET_USE_AIDL_QTI_HEALTH := true
+    libjson \
+    libqti_vndfwk_detect.vendor \
+    libvndfwk_detect_jni.qti_vendor \
+    vendor.qti.hardware.systemhelper@1.0.vendor
 
 # RenderScript
 PRODUCT_PACKAGES += \
@@ -107,7 +91,12 @@ PRODUCT_PACKAGES += \
 # Rootdir
 PRODUCT_PACKAGES += \
     init.mi_udfps.rc \
+    init.mi_overlay.rc \
     init.target.rc
+
+# Sensors
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/configs/sensors/hals.conf:$(TARGET_COPY_OUT_VENDOR)/etc/sensors/hals.conf
 
 # Shipping API level
 PRODUCT_SHIPPING_API_LEVEL := 31

@@ -6,7 +6,7 @@
 
 prebuilt_etc {
     name: "init.mi_udfps.rc",
-    src: "init.mi_udfps.rc",
+    src: "etc/init.mi_udfps.rc",
     sub_dir: "init/hw",
     vendor: true,
  }
@@ -14,6 +14,13 @@ prebuilt_etc {
 prebuilt_etc {
     name: "init.target.rc",
     src: "etc/init.target.rc",
+    sub_dir: "init/hw",
+    vendor: true,
+}
+
+prebuilt_etc {
+    name: "init.mi_overlay.rc",
+    src: "etc/init.mi_overlay.rc",
     sub_dir: "init/hw",
     vendor: true,
 }

@@ -103,7 +103,6 @@ qemu.hw.mainkeys=0
 ril.subscription.types=NV,RUIM
 rild.libpath=/vendor/lib64/libril-qc-hal-qmi.so
 ro.actionable_compatible_property.enabled=true
-ro.allow.mock.location=0
 ro.bluetooth.emb_wp_mode=false
 ro.bluetooth.library_name=libbluetooth_qti.so
 ro.bluetooth.wipower=false
