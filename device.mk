@@ -106,7 +106,7 @@ PRODUCT_PACKAGES += \
     init.target.rc
 
 # Shipping API level
-PRODUCT_SHIPPING_API_LEVEL := 33 34
+PRODUCT_SHIPPING_API_LEVEL := 31
 
 # Soong namespaces
 PRODUCT_SOONG_NAMESPACES += \
