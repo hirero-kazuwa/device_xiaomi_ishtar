@@ -55,11 +55,12 @@ PRODUCT_PACKAGES += \
 PRODUCT_ENFORCE_RRO_TARGETS := *
 
 PRODUCT_PACKAGES += \
-     IshtarFrameworks \
-     IshtarSystemUI \
-     IshtarWifiRes \
-     IshtarWifiResTarget \
-     IshtarWifiResTarget_spf
+    IshtarFrameworks \
+    IshtarSettingsProvider \
+    IshtarSystemUI \
+    IshtarWifiRes \
+    IshtarWifiResTarget \
+    IshtarWifiResTarget_spf
 
 # Partitions
 PRODUCT_BUILD_SUPER_PARTITION := false
