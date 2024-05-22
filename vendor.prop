@@ -44,3 +44,6 @@ ro.incremental.enable=yes
 
 # Media
 ro.mediaserver.64b.enable=true
+
+# Update engine
+ro.virtual_ab.compression.threads=true

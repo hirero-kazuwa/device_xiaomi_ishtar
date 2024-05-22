@@ -7,8 +7,6 @@
 PRODUCT_OTA_ENFORCE_VINTF_KERNEL_REQUIREMENTS := false
 
 # A/B
-$(call inherit-product, $(SRC_TARGET_DIR)/product/virtual_ab_ota.mk)
-
 PRODUCT_PACKAGES += \
     android.hardware.boot@1.2-impl \
     android.hardware.boot@1.2-impl.recovery \
@@ -19,6 +17,7 @@ PRODUCT_PACKAGES += \
     update_engine_sideload \
     update_verifier
 
+# A/B
 AB_OTA_POSTINSTALL_CONFIG += \
     RUN_POSTINSTALL_system=true \
     POSTINSTALL_PATH_system=system/bin/otapreopt_script \
@@ -77,6 +76,10 @@ PRODUCT_CHARACTERISTICS := nosdcard
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/perf/msm_irqbalance.conf:$(TARGET_COPY_OUT_VENDOR)/etc/msm_irqbalance.conf
 
+# Properties
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/odm.prop:$(TARGET_COPY_OUT_ODM)/etc/build_ishtar.prop
+
 # QTI
 PRODUCT_PACKAGES += \
     libjson \
@@ -88,18 +91,9 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     android.hardware.renderscript@1.0-impl
 
-# Rootdir
-PRODUCT_PACKAGES += \
-    init.mi_udfps.rc \
-    init.mi_overlay.rc \
-    init.target.rc
-
 # Sensors
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/sensors/hals.conf:$(TARGET_COPY_OUT_VENDOR)/etc/sensors/hals.conf
-
-# Shipping API level
-PRODUCT_SHIPPING_API_LEVEL := 31
 
 # Soong namespaces
 PRODUCT_SOONG_NAMESPACES += \
@@ -107,3 +101,5 @@ PRODUCT_SOONG_NAMESPACES += \
 
 # Inherit the proprietary files
 $(call inherit-product, vendor/xiaomi/ishtar/ishtar-vendor.mk)
+$(call inherit-product, device/qcom/common/system/Android.mk)
+$(call inherit-product, device/qcom/common/vendor/Android.mk)

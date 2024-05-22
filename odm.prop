@@ -6,12 +6,14 @@ bluetooth.device.default_name=Xiaomi 13 Ultra
 
 # Display
 persist.sys.sf.color_mode=0
+ro.sf.lcd_density=530
+ro.vendor.touchfeature.type=183
 
 # Sensors
 persist.vendor.sensors.enable.mag_filter=true
 
-# SPU
-vendor.gatekeeper.disable_spu=true
+# Marketname
+ro.product.marketname=Xiaomi 13 Ultra
 
 # USB
 vendor.usb.product_string=Xiaomi 13 Ultra

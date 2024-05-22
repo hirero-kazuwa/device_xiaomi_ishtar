@@ -25,7 +25,7 @@ using std::string;
 // List of partitions to override props
 static const string source_partitions[] = {
     "", "bootimage.", "odm.", "product.", "system.",
-    "system_ext.", "vendor.", "vendor_dlkm."
+    "system_dlkm.", "system_ext.", "vendor.", "vendor_dlkm."
 };
 
 bool IsRecoveryMode() {
@@ -41,6 +41,10 @@ void property_override(char const prop[], char const value[]) {
         __system_property_add(prop, strlen(prop), value, strlen(value));
 }
 
+void set_build_prop(const string &prop, const string &value) {
+    property_override(prop.c_str(), value.c_str());
+}
+
 void set_ro_build_prop(const string &prop, const string &value) {
     string prop_name;
     for (const string &source : source_partitions) {
@@ -52,15 +56,23 @@ void set_ro_build_prop(const string &prop, const string &value) {
 void vendor_load_properties() {
     // Detect variant and override properties
     string region = GetProperty("ro.boot.hwc", "");
+    string sku = GetProperty("ro.boot.hardware.sku", "");
 
+    // Override device specific props
+    set_build_prop("ro.build.product", sku);
+    set_ro_build_prop("device", sku);
+
+    if (sku == "ishtar") { // Xiaomi 13 Ultra
     if (region == "CN") { // China
         set_ro_build_prop("model", "2304FPN6DC");
+        set_ro_build_prop("name", "ishtar");
     } else { // Global
         set_ro_build_prop("model", "2304FPN6DG");
+        set_ro_build_prop("name", "ishtar");
     }
 
-    // Override first api level for safetynet
-    if (!IsRecoveryMode()) {
-        property_override("ro.product.first_api_level", "32");
-    }
+    // Override hardware revision
+    set_build_prop("ro.boot.hardware.revision", sku);
+
+  }
 }
